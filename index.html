@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine Hiya💖</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffd6e8, #ffe6f0);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    color: red;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+h1 {
+    color: #d63384;
+    margin-bottom: 30px;
+}
+
+button {
+    font-size: 18px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#yes {
+    background: #28a745;
+    color: white;
+}
+
+#no {
+    background: #dc3545;
+    color: white;
+    position: absolute;
+}
+
+#message {
+    margin-top: 20px;
+    color: #dc3545;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>Will you be my Valentine Bablu? 🌹</h1>
+    <button id="yes" onclick="yesClicked()">Yes</button>
+    <button id="no">No</button>
+    <div id="message"></div>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const message = document.getElementById("message");
+
+let noCount = 0;
+
+noBtn.addEventListener("mouseover", () => {
+    if (noCount >= 5) return;
+
+    noCount++;
+
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    const rotate = Math.random() * 360;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    noBtn.style.transform = `rotate(${rotate}deg)`;
+
+    if (noCount === 5) {
+        message.innerText = "I am fascist So,stop messing with me 😒";
+        noBtn.style.transform = "none";
+    }
+});
+
+function yesClicked() {
+    document.body.innerHTML = `
+    <div style="
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:#ffb6c1;
+        font-family:Arial;
+        text-align:center;">
+        <h1>Yayyyy! 💖😍<br>You said YES! I love you </h1>
+    </div>`;
+}
+
+/* Generate hearts */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 300);
+</script>
+
+</body>
+</html>
